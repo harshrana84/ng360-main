@@ -35,49 +35,98 @@
 	<div class='Vision360'></div>
 	<div class="additional_data"></div>
 	<div class="image_container"></div>
-
-	<script>
+</body>
+<script>
+	$(window).on('load', function () {
 		let url = window.location.href;
 		let value = new URLSearchParams(url.split('?')[1]).get('d');
 
 		// Create a new text node
-		let textNode = document.createTextNode("Diamond ID: " + value);
+		let textNode = $("<div>").text("Diamond ID: " + value);
 
 		// Append the text node to the '.additional_data' div
-		document.querySelector('.additional_data').appendChild(textNode);
+		$('.additional_data').append(textNode);
+
+
+		// Create a new button
+		let btn = $('<button>').text('🎥');
+
+		// Append the button to the '.additional_data' div
+		$('.image_container').append(btn);
+
+
 
 		// Assuming the images are in the same directory as your HTML file
 		let imagePath = "./imaged/" + value + "/still.jpg";
-		let haArrowB = "./imaged/" + value + "/H&A HEART.jpg";
-		let haArrowF = "./imaged/" + value + "/H&A ARROW.jpg";
+		let haArrowB = "./imaged/" + value + "/H&A%20HEART.jpg";
+		let haArrowF = "./imaged/" + value + "/H&A%20ARROW.jpg";
 		let asetW = "./imaged/" + value + "/ASET..jpg";
 		let asetB = "./imaged/" + value + "/ASET.jpg";
 
 		// Create new img elements
-		let img1 = document.createElement('img');
-		let img2 = document.createElement('img');
-		let img3 = document.createElement('img');
-		let img4 = document.createElement('img');
-		let img5 = document.createElement('img');
-
-		// Set the src attribute of the img elements
-		img1.src = imagePath;
-		img2.src = haArrowB;
-		img3.src = haArrowF;
-		img4.src = asetW;
-		img5.src = asetB;
-
-		// Get the div with class 'image_container'
-		let container = document.querySelector('.image_container');
+		let img1 = $('<img>').attr('src', imagePath);
+		let img2 = $('<img>').attr('src', haArrowB);
+		let img3 = $('<img>').attr('src', haArrowF);
+		let img4 = $('<img>').attr('src', asetW);
+		let img5 = $('<img>').attr('src', asetB);
 
 		// Append the img elements to the 'image_container' div
-		container.appendChild(img1);
-		container.appendChild(img2);
-		container.appendChild(img3);
-		container.appendChild(img4);
-		container.appendChild(img5);
+		$('.image_container').append(img1, img2, img3, img4, img5);
 
-	</script>
-</body>
+		// Add event listeners to the images
+		img1.on('click', function () {
+			$('.V360-stage').css({
+				'background-image': 'url(' + img1.attr('src') + ')',
+				'z-index': '2',
+				'background-color': '#cdcdcd'
+			})
+		});
+		img2.on('click', function () {
+			$('.V360-stage').css(
+				{
+					'background-image': 'url(' + img2.attr('src') + ')',
+					'z-index': '2',
+					'background-color': '#cdcdcd'
+				}
+			)
+		});
+		img3.on('click', function () {
+			$('.V360-stage').css(
+				{
+					'background-image': 'url(' + img3.attr('src') + ')',
+					'z-index': '2',
+					'background-color': '#cdcdcd'
+				}
+			)
+		});
+		img4.on('click', function () {
+			$('.V360-stage').css(
+				{
+					'background-image': 'url(' + img4.attr('src') + ')',
+					'z-index': '2',
+					'background-color': '#cdcdcd'
+				}
+			)
+		});
+		img5.on('click', function () {
+			$('.V360-stage').css(
+				{
+					'background-image': 'url(' + img5.attr('src') + ')',
+					'z-index': '2',
+					'background-color': '#cdcdcd'
+				}
+			)
+		});
+		// Add event listener to the button
+		btn.on('click', function () {
+			$('.V360-stage').css(
+				{
+					'background-color': 'transparent',
+					'background-image': 'none'
+				}
+			);
+		});
+	});
+</script>
 
 </html>
