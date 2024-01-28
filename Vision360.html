@@ -19,7 +19,7 @@
 				autoPlay: 1,
 				infoURL: '',
 				watermarkPosition: '7',
-				watermarkLink : 'ng360.vercel.app',
+				watermarkLink: 'ng360.vercel.app',
 				quality: 0,//Movie quality. If you pass 0 then it take from 0.js
 				zoom: 1,// Pass 1 or 0 If you want to see zoom button
 				buttons: '',//If you don't want to see navigation button then 0
@@ -32,7 +32,52 @@
 </head>
 
 <body>
-	<div class='Vision360'></div> 
+	<div class='Vision360'></div>
+	<div class="additional_data"></div>
+	<div class="image_container"></div>
+
+	<script>
+		let url = window.location.href;
+		let value = new URLSearchParams(url.split('?')[1]).get('d');
+
+		// Create a new text node
+		let textNode = document.createTextNode("Diamond ID: " + value);
+
+		// Append the text node to the '.additional_data' div
+		document.querySelector('.additional_data').appendChild(textNode);
+
+		// Assuming the images are in the same directory as your HTML file
+		let imagePath = "./imaged/" + value + "/still.jpg";
+		let haArrowB = "./imaged/" + value + "/H&A HEART.jpg";
+		let haArrowF = "./imaged/" + value + "/H&A ARROW.jpg";
+		let asetW = "./imaged/" + value + "/ASET..jpg";
+		let asetB = "./imaged/" + value + "/ASET.jpg";
+
+		// Create new img elements
+		let img1 = document.createElement('img');
+		let img2 = document.createElement('img');
+		let img3 = document.createElement('img');
+		let img4 = document.createElement('img');
+		let img5 = document.createElement('img');
+
+		// Set the src attribute of the img elements
+		img1.src = imagePath;
+		img2.src = haArrowB;
+		img3.src = haArrowF;
+		img4.src = asetW;
+		img5.src = asetB;
+
+		// Get the div with class 'image_container'
+		let container = document.querySelector('.image_container');
+
+		// Append the img elements to the 'image_container' div
+		container.appendChild(img1);
+		container.appendChild(img2);
+		container.appendChild(img3);
+		container.appendChild(img4);
+		container.appendChild(img5);
+
+	</script>
 </body>
 
 </html>
