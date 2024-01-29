@@ -4,12 +4,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="" />
     <title>NG360</title>
 </head>
 
 <body>
-    <a href="/Vision360.html?d=moviename1">View DN.35328</a>
-    
+
+    <h4>Folder Names</h4>
+    <ul id="folderList"></ul>
+
+    <script>
+        // Make a GET request to the Node.js server to get folder names
+        fetch('http://localhost:3000/getFolders')
+            .then(response => response.json())
+            .then(data => {
+                const folderList = document.getElementById('folderList');
+                data.forEach(folder => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = folder;
+                    folderList.appendChild(listItem);
+                });
+            })
+            .catch(error => console.error('Error fetching folder names:', error));
+    </script>
+
 </body>
+
+
+<!-- You can ignore this JS -->
+<script>
+    // Get the link tag for the favicon
+    const faviconLink = document.querySelector("link[rel=icon]");
+
+    // List of SVG data strings
+    const svgs = [
+        // SVG 1
+        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 160" x="0px" y="0px"><polygon points="111.767 11.01 66.283 11.01 89.026 36.445 111.767 11.01"/><polygon points="61.766 11.01 16.283 11.01 39.025 36.445 61.766 11.01"/><polygon points="14.121 11.622 1 36.95 36.766 36.95 14.121 11.622"/><polygon points="86.767 36.95 64.025 11.515 41.283 36.95 86.767 36.95"/><polygon points="1.413 38.97 61.467 115.601 38.225 38.97 1.413 38.97"/><polygon points="91.284 36.95 127 36.95 113.897 11.659 91.284 36.95"/><polygon points="40.337 38.97 64 116.99 87.663 38.97 40.337 38.97"/><polygon points="66.533 115.601 126.587 38.97 89.775 38.97"/><text x="0" y="143" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created by DinosoftLabs</text><text x="0" y="148" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun Project</text></svg>`,
+
+        // SVG 2
+        `<svg width="126" height="106" viewBox="0 0 126 106" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M110.767 0H65.2832L88.0262 25.435L110.767 0Z" fill="#9746FF"/><path d="M60.7662 0H15.2832L38.0252 25.435L60.7662 0Z" fill="#9746FF"/><path d="M13.121 0.611328L0 25.9393H35.766L13.121 0.611328Z" fill="#9746FF"/><path d="M85.7672 25.9409L63.0252 0.505859L40.2832 25.9409H85.7672Z" fill="#9746FF"/><path d="M0.413086 27.9609L60.4671 104.592L37.2251 27.9609H0.413086Z" fill="#9746FF"/><path d="M90.2842 25.9394H126L112.897 0.648438L90.2842 25.9394Z" fill="#9746FF"/><path d="M39.3369 27.9609L62.9999 105.981L86.6629 27.9609H39.3369Z" fill="#9746FF"/><path d="M65.5332 104.592L125.587 27.9609H88.7752L65.5332 104.592Z" fill="#9746FF"/></svg>`,
+
+        // SVG 3
+        `<svg width="126" height="106" viewBox="0 0 126 106" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M110.767 0H65.2832L88.0262 25.435L110.767 0Z" fill="#FF9933"/>
+<path d="M60.7662 0H15.2832L38.0252 25.435L60.7662 0Z" fill="#FF9933"/>
+<path d="M13.121 0.611328L0 25.9393H35.766L13.121 0.611328Z" fill="#FF9933"/>
+<path d="M85.7672 25.9409L63.0252 0.505859L40.2832 25.9409H85.7672Z" fill="#FF9933"/>
+<path d="M0.413086 27.9609L60.4671 104.592L37.2251 27.9609H0.413086Z" fill="#FF9933"/>
+<path d="M90.2842 25.9394H126L112.897 0.648438L90.2842 25.9394Z" fill="#FF9933"/>
+<path d="M39.3369 27.9609L62.9999 105.981L86.6629 27.9609H39.3369Z" fill="#FF9933"/>
+<path d="M65.5332 104.592L125.587 27.9609H88.7752L65.5332 104.592Z" fill="#FF9933"/>
+</svg>`,
+
+        // SVG 4
+        `
+<svg width="126" height="106" viewBox="0 0 126 106" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M110.767 0H65.2832L88.0262 25.435L110.767 0Z" fill="white"/>
+<path d="M60.7662 0H15.2832L38.0252 25.435L60.7662 0Z" fill="white"/>
+<path d="M13.121 0.611328L0 25.9393H35.766L13.121 0.611328Z" fill="white"/>
+<path d="M85.7672 25.9409L63.0252 0.505859L40.2832 25.9409H85.7672Z" fill="white"/>
+<path d="M0.413086 27.9609L60.4671 104.592L37.2251 27.9609H0.413086Z" fill="white"/>
+<path d="M90.2842 25.9394H126L112.897 0.648438L90.2842 25.9394Z" fill="white"/>
+<path d="M39.3369 27.9609L62.9999 105.981L86.6629 27.9609H39.3369Z" fill="white"/>
+<path d="M65.5332 104.592L125.587 27.9609H88.7752L65.5332 104.592Z" fill="white"/>
+</svg>`
+    ];
+
+    let currentIndex = 0;
+
+    // Function to toggle between SVGs
+    function toggleSVG() {
+        currentIndex = (currentIndex + 1) % svgs.length;
+        faviconLink.href = `data:image/svg+xml,${encodeURIComponent(svgs[currentIndex])}`;
+    }
+
+    // Set interval to toggle every 1000 milliseconds (1 second)
+    let interval = setInterval(toggleSVG, 1000);
+
+</script>
 
 </html>
