@@ -1,9 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 body {
     margin: 0;
     padding: 0;
     background: #fff
 }
-
+*{
+    font-family: 'Poppins';
+    margin: 0;
+    padding: 0;
+}
 .round-loope img,
 .magnifier img {
     width: 100%;
@@ -763,15 +769,17 @@ html {
 /* custom css */
 
 .image_container {
-    padding: 50px 15px;
+    padding: 0 15px 50px 15px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    gap: 10px;
 }
 
 .image_container img {
-    max-width: 100px;
-    max-height: 100px;
+    max-width: 80px;
+    height: 80px;
+    object-fit: cover;
     margin: 0 5px;
     border-radius: 8px;
     transition: all 200ms ease;
@@ -806,6 +814,7 @@ html {
     background-position: center center;
     background-repeat: no-repeat;
 }
+
 button {
     font-size: 55px;
     transition: all 200ms ease;
@@ -814,7 +823,76 @@ button {
     cursor: pointer;
     border: 0;
 }
-button:hover { 
-    background-color: #d2d2d2;
-    transform: scale(0.9);
+ 
+
+.button,
+.SideView {
+    height: 40px !important;
+    min-width: 40px !important;
+}
+
+.buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+div#ty {
+    margin-right: 0;
+}
+
+div#ty .btnpos:nth-child(4),
+div#ty .btnpos:nth-child(6),
+div#trfv .btnpos:nth-child(2),
+div#trfv .btnpos:nth-child(4),
+div#trfv .btnpos:nth-child(5),
+div#trfv .btnpos:nth-child(6),
+.buttons table {
+    display: none !important;
+}
+
+.imgWtext {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
+}
+button.imgWtext,.image_container>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 0;
+    border: 1px solid #acacff;
+    padding: 5px 0;
+    border-radius: 8px;
+}
+button.imgWtext p , .image_container>div p {
+    FONT-WEIGHT: 500;
+    margin: 0;
+} 
+button.imgWtext p,.image_container>div p {
+    margin-top: 10px;
+}
+.HA_group, .Aset_group {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    border:1px solid #acacff;
+    padding: 5px 0;
+    border-radius: 8px;
+}
+p:empty {
+    display: none;
+}
+.HA_group p,.Aset_group p {
+    grid-column: span 2;
+    text-align: center;
+    margin-top: 3px !important;
+}
+@media (max-width:990px) {
+
+    .button,
+    .SideView {
+        height: 84px !important;
+        min-width: 84px !important;
+    }
 }

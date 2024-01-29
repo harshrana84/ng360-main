@@ -5,8 +5,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="user-scalable=no" />
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-	<title>NG360</title>
-	<link rel="icon" href="" />
+	<title>Quality Diamonds</title>
+	<link rel="icon" href="https://img.icons8.com/deco/48/diamond.png" />
 	<link href="css/vision360.css" rel="stylesheet" type="text/css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script type="text/javascript" src="js/w.js"></script><!--Use for watermark logo in viewer-->
@@ -48,14 +48,10 @@
 			return;
 		}
 
-		// Create a new text node
-		let textNode = $("<div>").text("Diamond ID: " + value);
-
-		// Append the text node to the '.additional_data' div
-		$('.additional_data').append(textNode);
-
-		// Create a new button
-		let btn = $('<button>').text('🎥');
+		let btn = $('<button class="imgWtext">').html(`
+        <img src="./imaged/${value}/still.jpg" alt="Still Image">
+        <p>360° View</p>
+    `);
 
 		// Append the button to the '.additional_data' div
 		$('.image_container').append(btn);
@@ -68,30 +64,38 @@
 		let asetB = "./imaged/" + value + "/ASET.jpg";
 
 		// Create new img elements
-		let img1 = createImageElement(imagePath);
+		let img1 = createImageElement(imagePath, "Still"); // Add text "Still" to the first image
 		let img2 = createImageElement(haArrowB);
 		let img3 = createImageElement(haArrowF);
 		let img4 = createImageElement(asetW);
 		let img5 = createImageElement(asetB);
 
 		// Append the img elements to the 'image_container' div
-		$('.image_container').append(img1, img2, img3, img4, img5);
+		$('.image_container').append(img1);
+
+		// Merge H&A images into one div and give it a class "HA_group"
+		let haGroupDiv = $('<div class="HA_group">').append(img2, img3, $('<p>H&A Image</p>'));
+		$('.image_container').append(haGroupDiv);
+
+		// Merge ASET images into one div and give it a class "Aset_group"
+		let asetDiv = $('<div class="Aset_group">').append(img4, img5, $('<p>ASET Image</p>'));
+		$('.image_container').append(asetDiv);
 
 		// Add event listeners to the images
 		img1.on('click', function () {
-			updateV360Stage(img1.attr('src'));
+			updateV360Stage(img1.find('img').attr('src')); // Retrieve the source from the child img element
 		});
-		img2.on('click', function () {
-			updateV360Stage(img2.attr('src'));
+
+		// Add event listener to the H&A group
+		$('.HA_group').on('click', function () {
+			updateV360Stage(haGroupDiv.find('img').first().attr('src'));
 		});
-		img3.on('click', function () {
-			updateV360Stage(img3.attr('src'));
-		});
+
 		img4.on('click', function () {
-			updateV360Stage(img4.attr('src'));
+			updateV360Stage(img4.find('img').attr('src'));
 		});
 		img5.on('click', function () {
-			updateV360Stage(img5.attr('src'));
+			updateV360Stage(img5.find('img').attr('src'));
 		});
 
 		// Add event listener to the button
@@ -99,11 +103,15 @@
 			resetV360Stage();
 		});
 
-		function createImageElement(src) {
-			return $('<img>').attr('src', src).on('error', function () {
+		function createImageElement(src, text) {
+			let container = $('<div>');
+			let image = $('<img>').attr('src', src).on('error', function () {
 				console.log('Error loading image:', src);
 				$(this).remove(); // Remove the image element on error
 			});
+			let textNode = $('<p>').text(text);
+			container.append(image, textNode);
+			return container;
 		}
 
 		function updateV360Stage(imageSrc) {
@@ -121,6 +129,7 @@
 			});
 		}
 	});
+
 
 	// ************************************ NODE JS *********************************************
 	//requiring path and fs modules
@@ -145,54 +154,33 @@
 
 <!-- You can ignore this JS -->
 <script>
-	// Get the link tag for the favicon
-	const faviconLink = document.querySelector("link[rel=icon]");
+	function startTitleRotation() {
+		// List of titles to rotate
+		const titles = [
+			"Quality Diamonds",
+			"Certified Diamonds",
+			"Best Value",
+			"Welcome to NG360"
+		];
 
-	// List of SVG data strings
-	const svgs = [
-		// SVG 1
-		`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 160" x="0px" y="0px"><polygon points="111.767 11.01 66.283 11.01 89.026 36.445 111.767 11.01"/><polygon points="61.766 11.01 16.283 11.01 39.025 36.445 61.766 11.01"/><polygon points="14.121 11.622 1 36.95 36.766 36.95 14.121 11.622"/><polygon points="86.767 36.95 64.025 11.515 41.283 36.95 86.767 36.95"/><polygon points="1.413 38.97 61.467 115.601 38.225 38.97 1.413 38.97"/><polygon points="91.284 36.95 127 36.95 113.897 11.659 91.284 36.95"/><polygon points="40.337 38.97 64 116.99 87.663 38.97 40.337 38.97"/><polygon points="66.533 115.601 126.587 38.97 89.775 38.97"/><text x="0" y="143" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created by DinosoftLabs</text><text x="0" y="148" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun Project</text></svg>`,
+		let currentIndex = 0;
 
-		// SVG 2
-		`<svg width="126" height="106" viewBox="0 0 126 106" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M110.767 0H65.2832L88.0262 25.435L110.767 0Z" fill="#9746FF"/><path d="M60.7662 0H15.2832L38.0252 25.435L60.7662 0Z" fill="#9746FF"/><path d="M13.121 0.611328L0 25.9393H35.766L13.121 0.611328Z" fill="#9746FF"/><path d="M85.7672 25.9409L63.0252 0.505859L40.2832 25.9409H85.7672Z" fill="#9746FF"/><path d="M0.413086 27.9609L60.4671 104.592L37.2251 27.9609H0.413086Z" fill="#9746FF"/><path d="M90.2842 25.9394H126L112.897 0.648438L90.2842 25.9394Z" fill="#9746FF"/><path d="M39.3369 27.9609L62.9999 105.981L86.6629 27.9609H39.3369Z" fill="#9746FF"/><path d="M65.5332 104.592L125.587 27.9609H88.7752L65.5332 104.592Z" fill="#9746FF"/></svg>`,
+		// Create a function to rotate the title
+		function rotateTitle() {
+			document.title = titles[currentIndex];
+			currentIndex = (currentIndex + 1) % titles.length;
+		}
 
-		// SVG 3
-		`<svg width="126" height="106" viewBox="0 0 126 106" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M110.767 0H65.2832L88.0262 25.435L110.767 0Z" fill="#FF9933"/>
-<path d="M60.7662 0H15.2832L38.0252 25.435L60.7662 0Z" fill="#FF9933"/>
-<path d="M13.121 0.611328L0 25.9393H35.766L13.121 0.611328Z" fill="#FF9933"/>
-<path d="M85.7672 25.9409L63.0252 0.505859L40.2832 25.9409H85.7672Z" fill="#FF9933"/>
-<path d="M0.413086 27.9609L60.4671 104.592L37.2251 27.9609H0.413086Z" fill="#FF9933"/>
-<path d="M90.2842 25.9394H126L112.897 0.648438L90.2842 25.9394Z" fill="#FF9933"/>
-<path d="M39.3369 27.9609L62.9999 105.981L86.6629 27.9609H39.3369Z" fill="#FF9933"/>
-<path d="M65.5332 104.592L125.587 27.9609H88.7752L65.5332 104.592Z" fill="#FF9933"/>
-</svg>`,
+		const rotationInterval = setInterval(rotateTitle, 2000);
 
-		// SVG 4
-		`
-<svg width="126" height="106" viewBox="0 0 126 106" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M110.767 0H65.2832L88.0262 25.435L110.767 0Z" fill="white"/>
-<path d="M60.7662 0H15.2832L38.0252 25.435L60.7662 0Z" fill="white"/>
-<path d="M13.121 0.611328L0 25.9393H35.766L13.121 0.611328Z" fill="white"/>
-<path d="M85.7672 25.9409L63.0252 0.505859L40.2832 25.9409H85.7672Z" fill="white"/>
-<path d="M0.413086 27.9609L60.4671 104.592L37.2251 27.9609H0.413086Z" fill="white"/>
-<path d="M90.2842 25.9394H126L112.897 0.648438L90.2842 25.9394Z" fill="white"/>
-<path d="M39.3369 27.9609L62.9999 105.981L86.6629 27.9609H39.3369Z" fill="white"/>
-<path d="M65.5332 104.592L125.587 27.9609H88.7752L65.5332 104.592Z" fill="white"/>
-</svg>`
-	];
-
-	let currentIndex = 0;
-
-	// Function to toggle between SVGs
-	function toggleSVG() {
-		currentIndex = (currentIndex + 1) % svgs.length;
-		faviconLink.href = `data:image/svg+xml,${encodeURIComponent(svgs[currentIndex])}`;
+		// Optionally, you can stop the rotation after a certain duration (e.g., 15000 milliseconds)
+		setTimeout(function () {
+			clearInterval(rotationInterval);
+		}, 15000);
 	}
 
-	// Set interval to toggle every 1000 milliseconds (1 second)
-	let interval = setInterval(toggleSVG, 1000);
-
+	// Start the title rotation when the window loads
+	window.onload = startTitleRotation;
 </script>
 
 </html>
