@@ -33,9 +33,12 @@
 </head>
 
 <body>
-	<div class='Vision360'></div>
-	<div class="additional_data"></div>
-	<div class="image_container"></div>
+	<div class="container">
+		<div class='Vision360'></div>
+		<div class="additional_data"></div>
+		<div class="buttons_group"></div>
+		<div class="image_container"></div>
+	</div>
 </body>
 
 <script>
@@ -87,9 +90,10 @@
 		});
 
 		// Add event listener to the H&A group
-		$('.HA_group').on('click', function () {
-			updateV360Stage(haGroupDiv.find('img').first().attr('src'));
+		$('.HA_group img').on('click', function () {
+			updateV360Stage($(this).attr('src'));
 		});
+
 
 		img4.on('click', function () {
 			updateV360Stage(img4.find('img').attr('src'));
@@ -101,6 +105,10 @@
 		// Add event listener to the button
 		btn.on('click', function () {
 			resetV360Stage();
+		});
+		$('.imgWtext').on('click', function () {
+			// Trigger a click event on the element with ID "360view"
+			$('#360view').click();
 		});
 
 		function createImageElement(src, text) {
@@ -128,6 +136,79 @@
 				'background-image': 'none'
 			});
 		}
+		// Create a button to copy the current page URL
+		let copyUrlBtn = $(`<button class="copyUrlBtn" title="Copy Link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></button>`);
+
+		// Append the button to the '.image_container' div
+		$('div#trfv').append(copyUrlBtn);
+
+		// Add event listener to the button with class "imgWtext"
+		$('.imgWtext').on('click', function () {
+			// Trigger a click event on the element with ID "360view"
+			$('#360view').click();
+		});
+
+		// Add event listener to the copyUrlBtn button
+		copyUrlBtn.on('click', function () {
+			copyCurrentPageUrl();
+		});
+
+		// Function to copy the current page URL to the clipboard
+		function copyCurrentPageUrl() {
+			let url = window.location.href;
+
+			// Create a temporary textarea element to facilitate copying
+			let tempTextarea = $('<textarea>').val(url).appendTo('body').select();
+			document.execCommand('copy');
+			tempTextarea.remove();
+
+			// Change the button text to "Copied"
+			copyUrlBtn.text('✔');
+		}
+
+		// Create a button to download the video
+		let downloadVideoBtn = $(`<button class="downloadVideoBtn" title="Download Video">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></button>`);
+
+		// Append the button to the '.image_container' div
+		$('div#trfv').append(downloadVideoBtn);
+
+		// Add event listener to the downloadVideoBtn button
+		downloadVideoBtn.on('click', function () {
+			downloadVideo();
+		});
+
+
+
+		// Function to get the video link from the "imaged" folder
+		function getVideoLink() {
+			let url = window.location.href;
+			let value = new URLSearchParams(url.split('?')[1]).get('d');
+
+			// Assuming the video file is in the same directory as your HTML file
+			let videoPath = "./imaged/" + value + "/video.mp4";
+
+			return videoPath;
+		}
+
+		// Function to initiate the video download
+		function downloadVideo() {
+			let videoLink = getVideoLink();
+
+			// Create a temporary link element
+			let downloadLink = $('<a>').attr({
+				'href': videoLink,
+				'download': 'video.mp4'
+			});
+
+			// Append the link to the body and trigger a click event to start the download
+			downloadLink.appendTo('body')[0].click();
+
+			// Remove the temporary link element
+			downloadLink.remove();
+		}
+
+
 	});
 
 

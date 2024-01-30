@@ -5,11 +5,13 @@ body {
     padding: 0;
     background: #fff
 }
-*{
+
+* {
     font-family: 'Poppins';
     margin: 0;
     padding: 0;
 }
+
 .round-loope img,
 .magnifier img {
     width: 100%;
@@ -823,7 +825,7 @@ button {
     cursor: pointer;
     border: 0;
 }
- 
+
 
 .button,
 .SideView {
@@ -857,7 +859,9 @@ div#trfv .btnpos:nth-child(6),
     align-items: center;
     font-size: 16px;
 }
-button.imgWtext,.image_container>div {
+
+button.imgWtext,
+.image_container>div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -866,33 +870,88 @@ button.imgWtext,.image_container>div {
     padding: 5px 0;
     border-radius: 8px;
 }
-button.imgWtext p , .image_container>div p {
+
+button.imgWtext p,
+.image_container>div p {
     FONT-WEIGHT: 500;
     margin: 0;
-} 
-button.imgWtext p,.image_container>div p {
+}
+
+button.imgWtext p,
+.image_container>div p {
     margin-top: 10px;
 }
-.HA_group, .Aset_group {
+
+.HA_group,
+.Aset_group {
     display: grid !important;
     grid-template-columns: 1fr 1fr;
-    border:1px solid #acacff;
+    border: 1px solid #acacff;
     padding: 5px 0;
     border-radius: 8px;
 }
+
 p:empty {
     display: none;
 }
-.HA_group p,.Aset_group p {
+
+.HA_group p,
+.Aset_group p {
     grid-column: span 2;
     text-align: center;
     margin-top: 3px !important;
 }
+
+button.copyUrlBtn,
+button.downloadVideoBtn {
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+    background: #4e4e50;
+    border-radius: 84px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    margin-right: 0;
+}
+
+div#trfv {
+    display: flex !important;
+    gap: 5px;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+button.downloadVideoBtn svg,
+button.copyUrlBtn svg {
+    width: 50px;
+    height: 40px;
+}
+
 @media (max-width:990px) {
 
     .button,
     .SideView {
         height: 84px !important;
         min-width: 84px !important;
+    }
+
+    button.copyUrlBtn,
+    button.downloadVideoBtn {
+        width: 84px;
+        height: 84px;
+    }
+
+    .image_container img {
+        max-width: 150px;
+        height: 150px;
+        flex-wrap: wrap;
     }
 }
