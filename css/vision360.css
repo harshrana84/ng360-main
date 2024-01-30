@@ -955,4 +955,7 @@ button.copyUrlBtn svg {
         max-width: 150px;
         height: 150px;
     }
+    button.imgWtext p, .image_container>div p {
+        font-size: 22px;
+    }
 }
