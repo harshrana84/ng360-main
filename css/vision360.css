@@ -946,7 +946,9 @@ button.copyUrlBtn svg {
     .container {
         height: 100vh; 
     }
-
+    .buttons { 
+        flex-wrap: wrap;
+    }
     .button,
     .SideView {
         height: 84px !important;
