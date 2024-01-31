@@ -935,9 +935,7 @@ button.copyUrlBtn svg {
     width: 22px;
     height: 40px;
 }
-.button, .SideView { 
-    filter: contrast(180%);
-}
+ 
 
 @media (max-width:990px) {
 
@@ -961,6 +959,10 @@ button.copyUrlBtn svg {
     }
     button.imgWtext p, .image_container>div p {
         font-size: 22px;
+    }
+    button.downloadVideoBtn svg, button.copyUrlBtn svg {
+        width: 40px;
+        height: 40px;
     }
 }
 
