@@ -936,7 +936,7 @@ button.copyUrlBtn svg {
     height: 40px;
 }
 @media (min-width:990px) {
-.V360-canvas, .borderound {
+.V360-canvas, .borderound ,.V360-stage{
     height: 600px !important;
     width: 600px !important;
 }
