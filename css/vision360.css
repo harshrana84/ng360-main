@@ -2,7 +2,7 @@
 
 body {
     margin: 0;
-    padding: 0;
+    padding: 10px;
     background: #fff
 }
 
@@ -923,7 +923,7 @@ div#trfv {
 }
 
 .container {
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -935,9 +935,15 @@ button.copyUrlBtn svg {
     width: 22px;
     height: 40px;
 }
- 
+.V360-canvas, .borderound {
+    height: 600px !important;
+    width: 600px !important;
+}
 
 @media (max-width:990px) {
+    .container {
+        height: 100vh; 
+    }
 
     .button,
     .SideView {
