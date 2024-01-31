@@ -944,7 +944,7 @@ button.copyUrlBtn svg {
 
 @media (max-width:990px) {
     .container {
-        height: 100vh; 
+        height: 100%; 
     }
     .buttons { 
         flex-wrap: wrap;
@@ -964,11 +964,11 @@ button.copyUrlBtn svg {
     .image_container {
         flex-wrap: wrap;}
     .image_container img {
-        max-width: 150px;
-        height: 150px;
+        max-width: 180px;
+        height: 180px;
     }
     button.imgWtext p, .image_container>div p {
-        font-size: 22px;
+        font-size: 30px;
     }
     button.downloadVideoBtn svg, button.copyUrlBtn svg {
         width: 40px;
