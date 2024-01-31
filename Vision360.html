@@ -77,7 +77,7 @@
       );
       $(".image_container").append(asetDiv);
       img1.on("click", function () {
-        updateV360Stage(img1.find("img").attr("src")); // Retrieve the source from the child img element
+        updateV360Stage(img1.find("img").attr("src"));
       });
       $(".HA_group img").on("click", function () {
         updateV360Stage($(this).attr("src"));
@@ -92,7 +92,6 @@
         resetV360Stage();
       });
       $(".imgWtext").on("click", function () {
-        // Trigger a click event on the element with ID "360view"
         $("#360view").click();
       });
       $(".buttons img, .buttons a").click(function () {
@@ -101,26 +100,23 @@
           "background-image": "none",
         });
       });
-      // Check if images exist
       $.when($.get(haArrowB), $.get(haArrowF), $.get(asetW), $.get(asetB))
         .done(function () {
-          // All images exist, show the groups
           $(".HA_group").show();
           $(".Aset_group").show();
         })
         .fail(function () {
-          // At least one image doesn't exist, hide the groups
           $(".HA_group").hide();
           $(".Aset_group").hide();
         });
 
       function createImageElement(src, text) {
-        let container = $("<div>");
+        let container = $("<div class='flex'>");
         let image = $("<img>")
           .attr("src", src)
           .on("error", function () {
             console.log("Error loading image:", src);
-            $(this).remove(); // Remove the image element on error
+            $(this).remove();
           });
         let textNode = $("<p>").text(text);
         container.append(image, textNode);
@@ -146,12 +142,20 @@
       copyUrlBtn.on("click", function () {
         copyCurrentPageUrl();
       });
+
       function copyCurrentPageUrl() {
         let url = window.location.href;
         let tempTextarea = $("<textarea>").val(url).appendTo("body").select();
         document.execCommand("copy");
         tempTextarea.remove();
-        copyUrlBtn.text("✔");
+        copyUrlBtn.html("✔"); // Use .html() instead of .text() to insert HTML content
+
+        // Hide check mark and show initial SVG after 5 seconds
+        setTimeout(function () {
+          copyUrlBtn.html(
+            '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>'
+          );
+        }, 5000);
       }
 
       let downloadVideoBtn =
@@ -182,11 +186,9 @@
         url: getVideoLink(),
         type: "HEAD",
         error: function () {
-          // Video doesn't exist, hide the button
           downloadVideoBtn.hide();
         },
         success: function () {
-          // Video exists, show the button
           downloadVideoBtn.show();
         },
       });
