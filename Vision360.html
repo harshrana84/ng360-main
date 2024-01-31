@@ -1,267 +1,237 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>Quality Diamonds</title>
+    <link rel="icon" href="https://img.icons8.com/deco/48/diamond.png" />
+    <link href="css/vision360.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/w.js"></script>
+    <!--Use for watermark logo in viewer-->
+    <script type="text/javascript" src="js/vision360.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".Vision360").Vision360({
+          movieName: "video", //Movie Name
+          surl: "", // If your movie in other server or website
+          sideView: "", // 0 If you want to display all side view buttons
+          autoPlay: 1,
+          infoURL: "",
+          watermarkPosition: "7",
+          watermarkLink: "ng360.vercel.app",
+          quality: 0, //Movie quality. If you pass 0 then it take from 0.js
+          zoom: 1, // Pass 1 or 0 If you want to see zoom button
+          buttons: "", //If you don't want to see navigation button then 0
+          speed: 0,
+        });
+      });
+    </script>
+    <!--Read viewer manual first.Parameter effect are same with query string and function.If you use parameter then functional setting is removed-->
+    <!-- https://www.figma.com/file/6LX0MmHcc8PFwThGMVrs5I/NG360?type=whiteboard&node-id=0%3A1&t=VLupO1A57SzroCcV-1 -->
+  </head>
 
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="viewport" content="user-scalable=no" />
-	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-	<title>Quality Diamonds</title>
-	<link rel="icon" href="https://img.icons8.com/deco/48/diamond.png" />
-	<link href="css/vision360.css" rel="stylesheet" type="text/css" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-	<script type="text/javascript" src="js/w.js"></script><!--Use for watermark logo in viewer-->
-	<script type="text/javascript" src="js/vision360.js"></script>
-	<script>
-		$(document).ready(function () {
-			$('.Vision360').Vision360({
-				movieName: 'video',//Movie Name
-				surl: '',// If your movie in other server or website
-				sideView: '',// 0 If you want to display all side view buttons
-				autoPlay: 1,
-				infoURL: '',
-				watermarkPosition: '7',
-				watermarkLink: 'ng360.vercel.app',
-				quality: 0,//Movie quality. If you pass 0 then it take from 0.js
-				zoom: 1,// Pass 1 or 0 If you want to see zoom button
-				buttons: '',//If you don't want to see navigation button then 0
-				speed: 0
-			});
-		});
-	</script>
-	<!--Read viewer manual first.Parameter effect are same with query string and function.If you use parameter then functional setting is removed-->
-	<!-- https://www.figma.com/file/6LX0MmHcc8PFwThGMVrs5I/NG360?type=whiteboard&node-id=0%3A1&t=VLupO1A57SzroCcV-1 -->
-</head>
+  <body>
+    <div class="container">
+      <div class="Vision360"></div>
+      <div class="additional_data"></div>
+      <div class="buttons_group"></div>
+      <div class="image_container"></div>
+    </div>
+  </body>
 
-<body>
-	<div class="container">
-		<div class='Vision360'></div>
-		<div class="additional_data"></div>
-		<div class="buttons_group"></div>
-		<div class="image_container"></div>
-	</div>
-</body>
-
-<script>
-	$(window).on('load', function () {
-		let url = window.location.href;
-		let value = new URLSearchParams(url.split('?')[1]).get('d');
-
-		// If 'd' parameter is not present, exit
-		if (!value) {
-			return;
-		}
-
-		let btn = $('<button class="imgWtext">').html(`
+  <script>
+    $(window).on("load", function () {
+      let url = window.location.href;
+      let value = new URLSearchParams(url.split("?")[1]).get("d");
+      if (!value) {
+        return;
+      }
+      let btn = $('<button class="imgWtext">').html(`
         <img src="./imaged/${value}/still.jpg" alt="Still Image">
         <p>360° View</p>
     `);
+      $(".image_container").append(btn);
+      let imagePath = "./imaged/" + value + "/still.jpg";
+      let haArrowB = "./imaged/" + value + "/H&A%20HEART.jpg";
+      let haArrowF = "./imaged/" + value + "/H&A%20ARROW.jpg";
+      let asetW = "./imaged/" + value + "/ASET..jpg";
+      let asetB = "./imaged/" + value + "/ASET.jpg";
+      let img1 = createImageElement(imagePath, "Still"); // Add text "Still" to the first image
+      let img2 = createImageElement(haArrowB);
+      let img3 = createImageElement(haArrowF);
+      let img4 = createImageElement(asetW);
+      let img5 = createImageElement(asetB);
+      $(".image_container").append(img1);
+      let haGroupDiv = $('<div class="HA_group">').append(
+        img2,
+        img3,
+        $("<p>H&A Image</p>")
+      );
+      $(".image_container").append(haGroupDiv);
+      let asetDiv = $('<div class="Aset_group">').append(
+        img4,
+        img5,
+        $("<p>ASET Image</p>")
+      );
+      $(".image_container").append(asetDiv);
+      img1.on("click", function () {
+        updateV360Stage(img1.find("img").attr("src")); // Retrieve the source from the child img element
+      });
+      $(".HA_group img").on("click", function () {
+        updateV360Stage($(this).attr("src"));
+      });
+      img4.on("click", function () {
+        updateV360Stage(img4.find("img").attr("src"));
+      });
+      img5.on("click", function () {
+        updateV360Stage(img5.find("img").attr("src"));
+      });
+      btn.on("click", function () {
+        resetV360Stage();
+      });
+      $(".imgWtext").on("click", function () {
+        // Trigger a click event on the element with ID "360view"
+        $("#360view").click();
+      });
+      $(".buttons img, .buttons a").click(function () {
+        $(".V360-stage").css({
+          "background-color": "transparent",
+          "background-image": "none",
+        });
+      });
+      // Check if images exist
+      $.when($.get(haArrowB), $.get(haArrowF), $.get(asetW), $.get(asetB))
+        .done(function () {
+          // All images exist, show the groups
+          $(".HA_group").show();
+          $(".Aset_group").show();
+        })
+        .fail(function () {
+          // At least one image doesn't exist, hide the groups
+          $(".HA_group").hide();
+          $(".Aset_group").hide();
+        });
 
-		// Append the button to the '.additional_data' div
-		$('.image_container').append(btn);
+      function createImageElement(src, text) {
+        let container = $("<div>");
+        let image = $("<img>")
+          .attr("src", src)
+          .on("error", function () {
+            console.log("Error loading image:", src);
+            $(this).remove(); // Remove the image element on error
+          });
+        let textNode = $("<p>").text(text);
+        container.append(image, textNode);
+        return container;
+      }
+      function updateV360Stage(imageSrc) {
+        $(".V360-stage").css({
+          "background-image": "url(" + imageSrc + ")",
+          "z-index": "2",
+          "background-color": "#cdcdcd",
+        });
+      }
+      function resetV360Stage() {
+        $(".V360-stage").css({
+          "background-color": "transparent",
+          "background-image": "none",
+        });
+      }
+      let copyUrlBtn = $(
+        `<button class="copyUrlBtn" title="Copy Link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></button>`
+      );
+      $("div#trfv").append(copyUrlBtn);
+      copyUrlBtn.on("click", function () {
+        copyCurrentPageUrl();
+      });
+      function copyCurrentPageUrl() {
+        let url = window.location.href;
+        let tempTextarea = $("<textarea>").val(url).appendTo("body").select();
+        document.execCommand("copy");
+        tempTextarea.remove();
+        copyUrlBtn.text("✔");
+      }
 
-		// Assuming the images are in the same directory as your HTML file
-		let imagePath = "./imaged/" + value + "/still.jpg";
-		let haArrowB = "./imaged/" + value + "/H&A%20HEART.jpg";
-		let haArrowF = "./imaged/" + value + "/H&A%20ARROW.jpg";
-		let asetW = "./imaged/" + value + "/ASET..jpg";
-		let asetB = "./imaged/" + value + "/ASET.jpg";
-
-		// Create new img elements
-		let img1 = createImageElement(imagePath, "Still"); // Add text "Still" to the first image
-		let img2 = createImageElement(haArrowB);
-		let img3 = createImageElement(haArrowF);
-		let img4 = createImageElement(asetW);
-		let img5 = createImageElement(asetB);
-
-		// Append the img elements to the 'image_container' div
-		$('.image_container').append(img1);
-
-		// Merge H&A images into one div and give it a class "HA_group"
-		let haGroupDiv = $('<div class="HA_group">').append(img2, img3, $('<p>H&A Image</p>'));
-		$('.image_container').append(haGroupDiv);
-
-		// Merge ASET images into one div and give it a class "Aset_group"
-		let asetDiv = $('<div class="Aset_group">').append(img4, img5, $('<p>ASET Image</p>'));
-		$('.image_container').append(asetDiv);
-
-		// Add event listeners to the images
-		img1.on('click', function () {
-			updateV360Stage(img1.find('img').attr('src')); // Retrieve the source from the child img element
-		});
-
-		// Add event listener to the H&A group
-		$('.HA_group img').on('click', function () {
-			updateV360Stage($(this).attr('src'));
-		});
-
-
-		img4.on('click', function () {
-			updateV360Stage(img4.find('img').attr('src'));
-		});
-		img5.on('click', function () {
-			updateV360Stage(img5.find('img').attr('src'));
-		});
-
-		// Add event listener to the button
-		btn.on('click', function () {
-			resetV360Stage();
-		});
-		$('.imgWtext').on('click', function () {
-			// Trigger a click event on the element with ID "360view"
-			$('#360view').click();
-		});
-
-		function createImageElement(src, text) {
-			let container = $('<div>');
-			let image = $('<img>').attr('src', src).on('error', function () {
-				console.log('Error loading image:', src);
-				$(this).remove(); // Remove the image element on error
-			});
-			let textNode = $('<p>').text(text);
-			container.append(image, textNode);
-			return container;
-		}
-
-		function updateV360Stage(imageSrc) {
-			$('.V360-stage').css({
-				'background-image': 'url(' + imageSrc + ')',
-				'z-index': '2',
-				'background-color': '#cdcdcd'
-			});
-		}
-
-		function resetV360Stage() {
-			$('.V360-stage').css({
-				'background-color': 'transparent',
-				'background-image': 'none'
-			});
-		}
-		// Create a button to copy the current page URL
-		let copyUrlBtn = $(`<button class="copyUrlBtn" title="Copy Link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></button>`);
-
-		// Append the button to the '.image_container' div
-		$('div#trfv').append(copyUrlBtn);
-
-		// Add event listener to the button with class "imgWtext"
-		// $('.imgWtext').on('click', function () {
-		// 	// Trigger a click event on the element with ID "360view"
-		// 	$('#360view').click();
-		// });
-
-		// Add event listener to the copyUrlBtn button
-		copyUrlBtn.on('click', function () {
-			copyCurrentPageUrl();
-		});
-
-		// Function to copy the current page URL to the clipboard
-		function copyCurrentPageUrl() {
-			let url = window.location.href;
-
-			// Create a temporary textarea element to facilitate copying
-			let tempTextarea = $('<textarea>').val(url).appendTo('body').select();
-			document.execCommand('copy');
-			tempTextarea.remove();
-
-			// Change the button text to "Copied"
-			copyUrlBtn.text('✔');
-		}
-
-		// Create a button to download the video
-		let downloadVideoBtn = $(`<button class="downloadVideoBtn" title="Download Video">
+      let downloadVideoBtn =
+        $(`<button class="downloadVideoBtn" title="Download Video">
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></button>`);
 
-		// Append the button to the '.image_container' div
-		$('div#trfv').append(downloadVideoBtn);
+      $("div#trfv").append(downloadVideoBtn);
 
-		// Add event listener to the downloadVideoBtn button
-		downloadVideoBtn.on('click', function () {
-			downloadVideo();
-		});
+      function getVideoLink() {
+        let url = window.location.href;
+        let value = new URLSearchParams(url.split("?")[1]).get("d");
+        let videoPath = "./imaged/" + value + "/video.mp4";
+        return videoPath;
+      }
 
+      function downloadVideo() {
+        let videoLink = getVideoLink();
+        let downloadLink = $("<a>").attr({
+          href: videoLink,
+          download: "video.mp4",
+        });
+        downloadLink.appendTo("body")[0].click();
+        downloadLink.remove();
+      }
 
+      // Check if video exists
+      $.ajax({
+        url: getVideoLink(),
+        type: "HEAD",
+        error: function () {
+          // Video doesn't exist, hide the button
+          downloadVideoBtn.hide();
+        },
+        success: function () {
+          // Video exists, show the button
+          downloadVideoBtn.show();
+        },
+      });
 
-		// Function to get the video link from the "imaged" folder
-		function getVideoLink() {
-			let url = window.location.href;
-			let value = new URLSearchParams(url.split('?')[1]).get('d');
+      downloadVideoBtn.on("click", function () {
+        downloadVideo();
+      });
 
-			// Assuming the video file is in the same directory as your HTML file
-			let videoPath = "./imaged/" + value + "/video.mp4";
+      $(".buttons img, .buttons a").click(function () {
+        $(".V360-stage").css({
+          "background-color": "transparent",
+          "background-image": "none",
+        });
+      });
+    });
+  </script>
 
-			return videoPath;
-		}
+  <!-- You can ignore this JS -->
+  <script>
+    function startTitleRotation() {
+      // List of titles to rotate
+      const titles = [
+        "Quality Diamonds",
+        "Certified Diamonds",
+        "Best Value",
+        "Welcome to NG360",
+      ];
 
-		// Function to initiate the video download
-		function downloadVideo() {
-			let videoLink = getVideoLink();
+      let currentIndex = 0;
 
-			// Create a temporary link element
-			let downloadLink = $('<a>').attr({
-				'href': videoLink,
-				'download': 'video.mp4'
-			});
+      // Create a function to rotate the title
+      function rotateTitle() {
+        document.title = titles[currentIndex];
+        currentIndex = (currentIndex + 1) % titles.length;
+      }
 
-			// Append the link to the body and trigger a click event to start the download
-			downloadLink.appendTo('body')[0].click();
+      const rotationInterval = setInterval(rotateTitle, 2000);
 
-			// Remove the temporary link element
-			downloadLink.remove();
-		}
+      // Optionally, you can stop the rotation after a certain duration (e.g., 15000 milliseconds)
+      setTimeout(function () {
+        clearInterval(rotationInterval);
+      }, 15000);
+    }
 
-
-	});
-
-
-	// ************************************ NODE JS *********************************************
-	//requiring path and fs modules
-	const path = require('path');
-	const fs = require('fs');
-	//joining path of directory 
-	const directoryPath = path.join(__dirname, 'imaged');
-	//passsing directoryPath and callback function
-	fs.readdir(directoryPath, function (err, files) {
-		//handling error
-		if (err) {
-			return console.log('Unable to scan directory: ' + err);
-		}
-		//listing all files using forEach
-		files.forEach(function (file) {
-			// Do whatever you want to do with the file
-			console.log(file);
-		});
-	});
-
-</script>
-
-<!-- You can ignore this JS -->
-<script>
-	function startTitleRotation() {
-		// List of titles to rotate
-		const titles = [
-			"Quality Diamonds",
-			"Certified Diamonds",
-			"Best Value",
-			"Welcome to NG360"
-		];
-
-		let currentIndex = 0;
-
-		// Create a function to rotate the title
-		function rotateTitle() {
-			document.title = titles[currentIndex];
-			currentIndex = (currentIndex + 1) % titles.length;
-		}
-
-		const rotationInterval = setInterval(rotateTitle, 2000);
-
-		// Optionally, you can stop the rotation after a certain duration (e.g., 15000 milliseconds)
-		setTimeout(function () {
-			clearInterval(rotationInterval);
-		}, 15000);
-	}
-
-	// Start the title rotation when the window loads
-	window.onload = startTitleRotation;
-</script>
-
+    // Start the title rotation when the window loads
+    window.onload = startTitleRotation;
+  </script>
 </html>

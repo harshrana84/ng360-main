@@ -884,7 +884,7 @@ button.imgWtext p,
 
 .HA_group,
 .Aset_group {
-    display: grid !important;
+    display: grid ;
     grid-template-columns: 1fr 1fr;
     border: 1px solid #acacff;
     padding: 5px 0;
@@ -934,6 +934,9 @@ button.copyUrlBtn svg {
     width: 50px;
     height: 40px;
 }
+.button, .SideView { 
+    filter: contrast(180%);
+}
 
 @media (max-width:990px) {
 
@@ -958,4 +961,8 @@ button.copyUrlBtn svg {
     button.imgWtext p, .image_container>div p {
         font-size: 22px;
     }
+}
+
+button.imgWtext, .image_container > div { 
+	background: #fff;
 }
