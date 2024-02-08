@@ -100,13 +100,35 @@
           "background-image": "none",
         });
       });
-      $.when($.get(haArrowB), $.get(haArrowF), $.get(asetW), $.get(asetB))
+      $.get(haArrowB)
         .done(function () {
           $(".HA_group").show();
-          $(".Aset_group").show();
         })
         .fail(function () {
           $(".HA_group").hide();
+        });
+
+      $.get(haArrowF)
+        .done(function () {
+          $(".HA_group").show();
+        })
+        .fail(function () {
+          $(".HA_group").hide();
+        });
+
+      $.get(asetW)
+        .done(function () {
+          $(".Aset_group").show();
+        })
+        .fail(function () {
+          $(".Aset_group").hide();
+        });
+
+      $.get(asetB)
+        .done(function () {
+          $(".Aset_group").show();
+        })
+        .fail(function () {
           $(".Aset_group").hide();
         });
 
@@ -203,7 +225,7 @@
           "background-image": "none",
         });
       });
-    }); 
+    });
   </script>
 
   <!-- You can ignore this JS -->
