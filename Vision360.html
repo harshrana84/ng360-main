@@ -1,587 +1,487 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="user-scalable=no" />
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <title>Quality Diamonds</title>
-    <link rel="icon" href="https://img.icons8.com/deco/48/diamond.png" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <link href="css/vision360.css" rel="stylesheet" type="text/css" />
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script type="text/javascript" src="js/w.js"></script>
-    <!--Use for watermark logo in viewer-->
-    <script type="text/javascript" src="js/vision360.js"></script>
-    <script>
-      $(document).ready(function () {
-        $(".Vision360").Vision360({
-          movieName: "video", //Movie Name
-          surl: "", // If your movie in other server or website
-          sideView: "", // 0 If you want to display all side view buttons
-          autoPlay: 1,
-          infoURL: "",
-          watermarkPosition: "7",
-          watermarkLink: "ng360.vercel.app",
-          quality: 0, //Movie quality. If you pass 0 then it take from 0.js
-          zoom: 0, // Pass 1 or 0 If you want to see zoom button
-          buttons: "", //If you don't want to see navigation button then 0
-          speed: 0,
-        });
-      });
-    </script>
-    <!--Read viewer manual first.Parameter effect are same with query string and function.If you use parameter then functional setting is removed-->
-    <!-- https://www.figma.com/file/6LX0MmHcc8PFwThGMVrs5I/NG360?type=whiteboard&node-id=0%3A1&t=VLupO1A57SzroCcV-1 -->
-  </head>
 
-  <body>
-    <<main id="details"
-      class="row no-gutters"
-      style="font-family: 'Roboto'; font-size: small"
-    >
-      
-        <div class="container">
-          <div class="Vision360"></div>
-          <div class="additional_data"></div>
-          <div class="buttons_group"></div>
-          <div class="image_container"></div>
-        </div>
-      
-      
-    </main>
-    <main id="show"
-      class="row no-gutters"
-      style="font-family: 'Roboto'; font-size: small"
-    >
-      <div class="col-xs-12 col-sm-12 col-md-12  col-lg-8"">
-        <div class="container">
-          <div class="Vision360"></div>
-          <div class="additional_data"></div>
-          <div class="buttons_group"></div>
-          <div class="image_container"></div>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4" >
-        <div class="row pb-2 pt-5">
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <b>STONE ID</b>
-
-            <button
-              type="button"
-              class="btn btn-info p-1"
-              id="stockId"
-            ></button>
-          </div>
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <div class="align-self-end">
-              <button
-                type="button"
-                class="socialButton"
-                title="Share On Facebook"
-                id="shareFacebook"
-                onclick="ShareOnFacebook()"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="32"
-                  height="32"
-                  fill="blue"
-                  class="bi bi-facebook"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"
-                  />
-                </svg>
-              </button>
-              <!-- WHATS APP -->
-              <button
-                type="button"
-                class="socialButton"
-                title="Share On Whats App"
-                id="whatsAppBtn"
-                onclick="ShareOnWhatsApp()"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="32"
-                  height="32"
-                  fill="green"
-                  class="bi bi-whatsapp"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"
-                  />
-                </svg>
-              </button>
-              <!-- COPY URL -->
-              <button
-                class="socialButton"
-                title="Copy"
-                id="copyIcon"
-                onclick="CopyUrl()"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="32"
-                  height="32"
-                  fill="red"
-                  class="bi bi-copy"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"
-                  />
-                </svg>
-              </button>
-              <!-- CERTIFICATE -->
-             
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-12">
-                <!-- <b>Properties</b> -->
-                <div id="table-container1" class="stockId"></div>
-              </div>
-              <div class="col-12">
-                <!-- <b>Dimensions</b> -->
-                <div id="table-container2" class="stockId1"></div>
-              </div>
-              <div class="col-12">
-                <!-- <b>Other</b> -->
-                <div id="table-container3" class="stockId2"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-    
-  </body>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <title>Quality Diamonds</title>
+  <link rel="icon" href="https://img.icons8.com/deco/48/diamond.png" />
+  <link href="css/vision360.css" rel="stylesheet" type="text/css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script type="text/javascript" src="js/w.js"></script>
+  <!--Use for watermark logo in viewer-->
+  <script type="text/javascript" src="js/vision360.js"></script>
   <script>
-   
-  </script>
-
-  <script>
-    $(window).on("load", function () {
-      let url = window.location.href;
-      let encoded = encodeURI(url)
-      
-      let value = new URLSearchParams(url.split("?")[1]).get("d");
-      let show = new URLSearchParams(url.split("?")[1]).get("s");
-
-      
-
-      
-      
-      if(show == null){
-        
-        document.getElementById('show').style.display = 'none';
-      }else{
-        document.getElementById('details').style.display = 'none';
-        
-      }
-
-      if (!value) {
-        return;
-      }
-
-      var data = null;
-      getData();
-
-      // CREATE TABLE
-
-      async function getData() {
-        data = null;
-        const formData = new FormData();
-        formData.append("stockid", value);
-
-        try {
-          const response = await fetch(
-            "https://services.vanoradiamond.com/api/v1/auth/video/FindByStockId",
-            {
-              method: "POST",
-              // Set the FormData instance as the request body
-              body: formData,
-            }
-          );
-
-          data = await response.clone().json();
-
-          if (data) {
-            
-            
-            const tableContainer1 = document.getElementById("table-container1");
-            tableContainer1.innerHTML = generateTable1(data);
-
-            const stockId = document.getElementById("stockId");
-            stockId.innerText = data.stockId;
-
-          }
-        } catch (e) {
-          console.error(e);
-        }
-      }
-
-      function generateTable1(item) {
-
-        let reportType = data.lab;
-        let reportLink = '';
-        if (reportType == "IGI") {
-          reportLink = `https://www.igi.org/verify-your-report/?r=${data.reportNo}`;
-         
-        }
-        if (reportType == "GIA") {
-          reportLink = `https://www.gia.edu/report-check?reportno=${data.reportNo}`;
-          
-        }
-        
-
-
-
-        let table = "<table class='table table-striped table-sm'>";
-
-        table += `<tr><td>Shape</td><td>${item.shape}</td></tr>`;
-        table += `<tr><td>Carat</td><td>${item.weight}</td></tr>`;
-        table += `<tr><td>Color</td><td>${item.color}</td></tr>`;
-        table += `<tr><td>Clarity</td><td>${item.clarity}</td></tr>`;
-        table += `<tr><td>Cut</td><td>${item.cut}</td></tr>`;
-        table += `<tr><td>Polish</td><td>${item.polish}</td></tr>`;
-        table += `<tr><td>Sym</td><td>${item.sym}</td></tr>`;
-        table += `<tr><td>Fluorescence</td><td>${item.fluro}</td></tr>`;
-
-        if (item.handA) {
-          table += `<tr><td>H & A</td><td>${item.handA}</td></tr>`;
-        }
-
-        if (item.depthPt && item.tablePt) {
-          table += `<tr><td>Depth % - Table %</td><td>${item.depthPt} - ${item.tablePt}</td></tr>`;
-        }
-
-        // table += `<tr><td>Table %</td><td>${item.tablePt}</td></tr>`;
-        if (item.crAg && item.crHt) {
-          table += `<tr><td>Cr Ag - Cr Ht</td><td>${item.crAg} - ${item.crHt}</td></tr>`;
-        }
-
-        // table += `<tr><td>Cr Ht</td><td>${item.crHt}</td></tr>`;
-        if (item.pavAg && item.pavHt) {
-          table += `<tr><td>Pav Ag - Pav Dp</td><td>${item.pavAg} - ${item.pavHt}</td></tr>`;
-          // table += `<tr><td>Pav Dp</td><td></td></tr>`;
-        }
-
-        if (item.girdlePt) {
-          table += `<tr><td>Girdle %</td><td>${item.girdlePt}</td></tr>`;
-        }
-
-        table += `<tr><td>Measurement</td><td>${item.measurement}</td></tr>`;
-        table += `<tr><td>Certificate No</td><td>${item.lab} ${item.reportNo}</td></tr>`;
-        table += `<tr><td colspan="2" class="text-center"><a href="${reportLink}" target="_blank">View Certificate</a></td></tr>`;
-
-
-        table += "</table>";
-
-        return table;
-      }
-      
-      let btn = $('<button class="imgWtext">').html(`
-            <img src="./imaged/${value}/still.jpg" alt="Still Image">
-            <p>360° View</p>
-        `);
-     
-        $(".image_container").append(btn);
-      let imagePath = "./imaged/" + value + "/still.jpg";
-      let haArrowB = "./imaged/" + value + "/H&A%20HEART.jpg";
-      let haArrowF = "./imaged/" + value + "/H&A%20ARROW.jpg";
-      let asetW = "./imaged/" + value + "/ASET..jpg";
-      let asetB = "./imaged/" + value + "/ASET.jpg";
-      let img1 = createImageElement(imagePath, "Still"); // Add text "Still" to the first image
-      let img2 = createImageElement(haArrowB);
-      let img3 = createImageElement(haArrowF);
-      let img4 = createImageElement(asetW);
-      let img5 = createImageElement(asetB);
-      $(".image_container").append(img1);
-      let haGroupDiv = $('<div class="HA_group">').append(
-        img2,
-        img3,
-        $("<p>H&A Image</p>")
-      );
-      $(".image_container").append(haGroupDiv);
-      let asetDiv = $('<div class="Aset_group">').append(
-        img4,
-        img5,
-        $("<p>ASET Image</p>")
-      );
-      $(".image_container").append(asetDiv);
-      img1.on("click", function () {
-        updateV360Stage(img1.find("img").attr("src"));
-      });
-      $(".HA_group img").on("click", function () {
-        updateV360Stage($(this).attr("src"));
-      });
-      img4.on("click", function () {
-        updateV360Stage(img4.find("img").attr("src"));
-      });
-      img5.on("click", function () {
-        updateV360Stage(img5.find("img").attr("src"));
-      });
-      btn.on("click", function () {
-        resetV360Stage();
-      });
-      $(".imgWtext").on("click", function () {
-        $("#360view").click();
-      });
-      $(".buttons img, .buttons a").click(function () {
-        $(".V360-stage").css({
-          "background-color": "transparent",
-          "background-image": "none",
-        });
-      });
-      $.get(haArrowB)
-        .done(function () {
-          $(".HA_group").show();
-        })
-        .fail(function () {
-          $(".HA_group").hide();
-        });
-
-      $.get(haArrowF)
-        .done(function () {
-          $(".HA_group").show();
-        })
-        .fail(function () {
-          $(".HA_group").hide();
-        });
-
-      $.get(asetW)
-        .done(function () {
-          $(".Aset_group").show();
-        })
-        .fail(function () {
-          $(".Aset_group").hide();
-        });
-
-      $.get(asetB)
-        .done(function () {
-          $(".Aset_group").show();
-        })
-        .fail(function () {
-          $(".Aset_group").hide();
-        });
-
-      function createImageElement(src, text) {
-        let container = $("<div class='flex'>");
-        let image = $("<img>")
-          .attr("src", src)
-          .on("error", function () {
-            console.log("Error loading image:", src);
-            $(this).remove();
-          });
-        let textNode = $("<p>").text(text);
-        container.append(image, textNode);
-        return container;
-      }
-      function updateV360Stage(imageSrc) {
-        $(".V360-stage").css({
-          "background-image": "url(" + imageSrc + ")",
-          "z-index": "2",
-          "background-color": "#cdcdcd",
-        });
-      }
-      function resetV360Stage() {
-        $(".V360-stage").css({
-          "background-color": "transparent",
-          "background-image": "none",
-        });
-      }
-      let copyUrlBtn = $(
-        `<button class="copyUrlBtn" title="Copy Link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></button>`
-      );
-      $("div#trfv").append(copyUrlBtn);
-      copyUrlBtn.on("click", function () {
-        copyCurrentPageUrl();
-      });
-
-      function copyCurrentPageUrl() {
-        let url = window.location.href;
-        let tempTextarea = $("<textarea>").val(url).appendTo("body").select();
-        document.execCommand("copy");
-        tempTextarea.remove();
-        copyUrlBtn.html("✔"); // Use .html() instead of .text() to insert HTML content
-
-        // Hide check mark and show initial SVG after 5 seconds
-        setTimeout(function () {
-          copyUrlBtn.html(
-            '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>'
-          );
-        }, 5000);
-      }
-
-      let downloadVideoBtn =
-        $(`<button class="downloadVideoBtn" title="Download Video">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></button>`);
-
-      $("div#trfv").append(downloadVideoBtn);
-
-      var copyIconFun = document.getElementById("copyIcon");
-      if(copyIconFun != null){
-        copyIconFun.onclick = function(){
-          CopyUrl();
-        }
-      }
-
-      var whatsAppBtnFun = document.getElementById("whatsAppBtn");
-      if(whatsAppBtnFun != null){
-        whatsAppBtnFun.onclick = function(){
-          ShareOnWhatsApp();
-        }
-      }
-
-      var facebookFun = document.getElementById("shareFacebook");
-      if(facebookFun != null){
-        facebookFun.onclick = function(){
-          ShareOnFacebook();
-        }
-      }
-
-      var CertFun = document.getElementById("shareCertificate");
-      if(CertFun != null){
-        CertFun.onclick = function(){
-          ShareCertificate();
-        }
-      }
-
-      // document.getElementById("copyIcon").onclick = function () {
-      //   CopyUrl();
-      // };
-      // document.getElementById("whatsAppBtn").onclick = function () {
-      //   ShareOnWhatsApp();
-      // };
-      // document.getElementById("shareFacebook").onclick = function () {
-      //   ShareOnFacebook();
-      // };
-      
-      // document.getElementById("shareCertificate").onclick = function () {
-      //   ShareCertificate();
-      // };
-      function ShareCertificate() {
-        let reportType = data.lab;
-        if (reportType == "IGI") {
-          const url = `https://www.igi.org/verify-your-report/?r=${data.reportNo}`;
-          window.open(url, "_blank");
-        }
-        if (reportType == "GIA") {
-          const url = `https://www.gia.edu/report-check?reportno=${data.reportNo}`;
-          window.open(url, "_blank");
-        }
-      }
-
-      function CopyUrl() {
-        var dummy = document.createElement("input"),
-          text = window.location.href;
-
-        document.body.appendChild(dummy);
-        dummy.value = text;
-        dummy.select();
-        document.execCommand("copy");
-        document.body.removeChild(dummy);
-        alert("URL copied");
-      }
-      function ShareOnWhatsApp() {
-        var text = window.location.href;
-        const whatsappUrl = `whatsapp://send?text=${text}`;
-        // Open WhatsApp with the share URL
-        window.location.href = whatsappUrl;
-      }
-      function ShareOnFacebook() {
-      var text = window.location.href;
-      const whatsappUrl = `https://www.facebook.com/sharer/sharer.php?u=${encoded}`;
-      // Open WhatsApp with the share URL
-      window.location.href = whatsappUrl;
-    }
-
-      function getVideoLink() {
-        let url = window.location.href;
-        let value = new URLSearchParams(url.split("?")[1]).get("d");
-
-        let videoPath = "./imaged/" + value + "/video.mp4";
-        return videoPath;
-      }
-
-      function downloadVideo() {
-        let videoLink = getVideoLink();
-        let downloadLink = $("<a>").attr({
-          href: videoLink,
-          download: "video.mp4",
-        });
-        downloadLink.appendTo("body")[0].click();
-        downloadLink.remove();
-      }
-
-      // Check if video exists
-      $.ajax({
-        url: getVideoLink(),
-        type: "HEAD",
-        error: function () {
-          downloadVideoBtn.hide();
-        },
-        success: function () {
-          downloadVideoBtn.show();
-        },
-      });
-
-      downloadVideoBtn.on("click", function () {
-        downloadVideo();
-      });
-
-      $(".buttons img, .buttons a").click(function () {
-        $(".V360-stage").css({
-          "background-color": "transparent",
-          "background-image": "none",
-        });
+    $(document).ready(function () {
+      $(".Vision360").Vision360({
+        movieName: "video", //Movie Name
+        surl: "", // If your movie in other server or website
+        sideView: "", // 0 If you want to display all side view buttons
+        autoPlay: 1,
+        infoURL: "",
+        watermarkPosition: "7",
+        watermarkLink: "ng360.vercel.app",
+        quality: 0, //Movie quality. If you pass 0 then it take from 0.js
+        zoom: 0, // Pass 1 or 0 If you want to see zoom button
+        buttons: "", //If you don't want to see navigation button then 0
+        speed: 0,
       });
     });
   </script>
+  <!--Read viewer manual first.Parameter effect are same with query string and function.If you use parameter then functional setting is removed-->
+  <!-- https://www.figma.com/file/6LX0MmHcc8PFwThGMVrs5I/NG360?type=whiteboard&node-id=0%3A1&t=VLupO1A57SzroCcV-1 -->
 
-  <!-- You can ignore this JS -->
-  <script>
-    function startTitleRotation() {
-      // List of titles to rotate
-      const titles = [
-        "Quality Diamonds",
-        "Certified Diamonds",
-        "Best Value",
-        "Welcome to NG360",
-      ];
-
-      let currentIndex = 0;
-
-      // Create a function to rotate the title
-      function rotateTitle() {
-        document.title = titles[currentIndex];
-        currentIndex = (currentIndex + 1) % titles.length;
-      }
-
-      const rotationInterval = setInterval(rotateTitle, 2000);
-
-      // Optionally, you can stop the rotation after a certain duration (e.g., 15000 milliseconds)
-      setTimeout(function () {
-        clearInterval(rotationInterval);
-      }, 15000);
+  <style>
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 15px;
+      gap: 20px;
     }
 
-    // Start the title rotation when the window loads
-    window.onload = startTitleRotation;
-  </script>
+    @media (max-width:1024px){
+      .container {
+     grid-template-columns: 1fr;
+     
+    }
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js"
+    integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="column">
+      <div class="Vision360"></div>
+      <div class="additional_data"></div>
+      <div class="buttons_group"></div>
+      <div class="image_container"></div>
+    </div>
+    <div class="column is-6" id="stone-detail">
+      <div class="level">
+        <div class="level-left">
+          <div class="tags has-addons are-normal">
+            <span class="tag is-dark">
+              <span class="icon" style="">
+                <span class="material-symbols-outlined is-size-6">diamond</span>
+              </span>
+            </span>
+            <span class="tag is-info">R2226-1</span>
+          </div>
+        </div>
+        <div class="level-right">
+          <div class="level-item">
+            <div>
+              <div class="is-flex is-align-items-baseline is-justify-content-center">
+                <div class="mr-2">
+                  <a class="button btn-text-to-cb is-info is-light is-max-width-none is-width-auto has-tooltip-arrow has-tooltip-bottom has-tooltip-black tooltipstered"
+                    data-clipboard-text="https://v360.diamonds/c/c3df30f6-07d4-419d-9b24-d2b5a5589496?a=R2226-1&amp;m=c"
+                    data-message="URL Copied" data-tooltip="Copy URL"
+                    style="height: auto; min-width: 30px; max-width: 40px; width: 26px;">
+                    <span class="icon">
+                      <i class="fas fa-link"></i>
+                    </span>
+                  </a>
+                </div>
+                <div class="mr-2">
+                  <a class="button is-link b-success is-light is-max-width-none is-width-auto has-tooltip-arrow has-tooltip-bottom has-tooltip-black tooltipstered"
+                    href="https://www.facebook.com/sharer/sharer.php?u=https://v360.diamonds/c/c3df30f6-07d4-419d-9b24-d2b5a5589496?a=R2226-1&amp;m=c"
+                    target="_blank" data-tooltip="Share"
+                    style="height: auto; min-width: 30px; max-width: 40px; width: 26px;">
+                    <span class="icon">
+                      <i class="fab fa-facebook-f"></i>
+                    </span>
+                  </a>
+                </div>
+                <div class="mr-2">
+                  <a class="button is-link b-danger is-light send-email-modal is-max-width-none is-width-auto has-tooltip-arrow has-tooltip-bottom has-tooltip-black tooltipstered"
+                    href="#" data-url="https://v360.diamonds/c/c3df30f6-07d4-419d-9b24-d2b5a5589496?a=R2226-1&amp;m=c"
+                    data-name="R2226-1" data-tooltip="Email"
+                    style="height: auto; min-width: 30px; max-width: 40px; width: 26px;">
+                    <span class="icon">
+                      <i class="far fa-envelope"></i>
+                    </span>
+                  </a>
+                </div>
+                <div class="mr-2">
+                  <a class="button is-link b-danger is-light show-qr-modal is-max-width-none is-width-auto has-tooltip-arrow has-tooltip-bottom has-tooltip-black tooltipstered"
+                    href="#" data-url="https://v360.diamonds/c/c3df30f6-07d4-419d-9b24-d2b5a5589496?a=R2226-1&amp;m=c"
+                    data-name="R2226-1" data-tooltip="Get QR"
+                    style="height: auto; min-width: 30px; max-width: 40px; width: 26px;">
+                    <span class="icon">
+                      <i class="fas fa-qrcode"></i>
+                    </span>
+                  </a>
+                </div>
+                <div class="mr-2 is-hidden-desktop">
+                  <a class="button is-link b-success is-light is-max-width-none is-width-auto has-tooltip-arrow has-tooltip-bottom tooltipstered"
+                    href="https://api.whatsapp.com/send?text=https%3A%2F%2Fv360.diamonds%2Fc%2Fc3df30f6-07d4-419d-9b24-d2b5a5589496%3Fa%3DR2226-1%26m%3Dc"
+                    target="_blank" style="height: auto; min-width: 30px; max-width: 40px; width: 26px;">
+                    <span class="icon">
+                      <i class="fab fa-whatsapp"></i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="box content">
+        <div class="columns">
+          <div class="column is-one-third">
+            <table class="table is-striped">
+              <thead>
+                <tr>
+                  <th colspan="2">Properties</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+
+                  <td data-i18n="shape">Shape</td>
+                  <td class=" has-text-weight-bold is-capitalized">
+                    Round
+                  </td>
+                </tr>
+                <tr>
+
+                  <td data-i18n="cut_grade">Cut</td>
+                  <td class=" has-text-weight-bold is-capitalized">
+                    EX
+                  </td>
+                </tr>
+                <tr>
+
+                  <td data-i18n="weight">Carat</td>
+                  <td class=" has-text-weight-bold is-capitalized">
+                    1.01
+                  </td>
+                </tr>
+                <tr>
+
+                  <td data-i18n="clarity">Clarity</td>
+                  <td class=" has-text-weight-bold is-capitalized">
+                    SI2
+                  </td>
+                </tr>
+                <tr>
+
+                  <td data-i18n="color">Color</td>
+                  <td class=" has-text-weight-bold is-capitalized">
+                    E
+                  </td>
+                </tr>
+                <tr>
+
+                  <td data-i18n="polish">Polish</td>
+                  <td class=" has-text-weight-bold is-capitalized">
+                    EX
+                  </td>
+                </tr>
+                <tr>
+
+                  <td data-i18n="symmetry">Symmetry</td>
+                  <td class=" has-text-weight-bold is-capitalized">
+                    EX
+                  </td>
+                </tr>
+                <tr>
+
+                  <td data-i18n="fluorescence_intensity">Fluorescence Internsity</td>
+                  <td class=" has-text-weight-bold is-capitalized">
+                    FAINT
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="column is-one-third">
+            <table class="table is-striped">
+              <thead>
+                <tr>
+                  <th colspan="2">Dimensions</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <div class="column is-one-third">
+            <table class="table is-striped">
+              <thead>
+                <tr>
+                  <th colspan="2">Other</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="box">
+        <div class="level is-mobile">
+          <div class="level-left">
+            <div class="level-item">
+              <h3 class="is-size-5">GIA</h3>
+            </div>
+          </div>
+          <div class="level-right">
+            <div class="level-item">
+              <div class="tags has-addons are-normal">
+                <span class="tag is-dark">
+                  <span class="icon" style="">
+                    <span class="material-symbols-outlined is-size-6">tag</span>
+                  </span>
+                </span>
+                <span class="tag is-info">GIA 5483550511</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <object data="https://v360-studio-1002.s3.ap-south-1.amazonaws.com/1250/certificates/426647/65e8430a7fc2d.pdf"
+          type="application/pdf" frameborder="0" width="100%" height="400px">
+          <div class="is-flex is-align-items-center is-justify-content-center">
+            <a href="https://v360-studio-1002.s3.ap-south-1.amazonaws.com/1250/certificates/426647/65e8430a7fc2d.pdf"
+              target="_blank" class="is-flex is-align-items-center is-flex-direction-column">
+              <span class="icon is-large">
+                <i class="fas fa-file-pdf fa-3x"></i>
+              </span>
+              View Certificate
+            </a>
+          </div>
+        </object>
+      </div>
+      <object data="https://morth.nic.in/sites/default/files/dd12-13_0.pdf" type="application/pdf" width="100%"
+        height="600px">
+        <p>Your browser does not support PDFs.
+          <a href="https://morth.nic.in/sites/default/files/dd12-13_0.pdf">Download the PDF</a>.
+        </p>
+      </object>
+    </div>
+  </div>
+</body>
+
+<script>
+  $(window).on("load", function () {
+    let url = window.location.href;
+    let value = new URLSearchParams(url.split("?")[1]).get("d");
+    if (!value) {
+      return;
+    }
+    let btn = $('<button class="imgWtext">').html(`
+        <img src="./imaged/${value}/still.jpg" alt="Still Image">
+        <p>360° View</p>
+    `);
+    $(".image_container").append(btn);
+    let imagePath = "./imaged/" + value + "/still.jpg";
+    let haArrowB = "./imaged/" + value + "/H&A%20HEART.jpg";
+    let haArrowF = "./imaged/" + value + "/H&A%20ARROW.jpg";
+    let asetW = "./imaged/" + value + "/ASET..jpg";
+    let asetB = "./imaged/" + value + "/ASET.jpg";
+    let img1 = createImageElement(imagePath, "Still"); // Add text "Still" to the first image
+    let img2 = createImageElement(haArrowB);
+    let img3 = createImageElement(haArrowF);
+    let img4 = createImageElement(asetW);
+    let img5 = createImageElement(asetB);
+    $(".image_container").append(img1);
+    let haGroupDiv = $('<div class="HA_group">').append(
+      img2,
+      img3,
+      $("<p>H&A Image</p>")
+    );
+    $(".image_container").append(haGroupDiv);
+    let asetDiv = $('<div class="Aset_group">').append(
+      img4,
+      img5,
+      $("<p>ASET Image</p>")
+    );
+    $(".image_container").append(asetDiv);
+    img1.on("click", function () {
+      updateV360Stage(img1.find("img").attr("src"));
+    });
+    $(".HA_group img").on("click", function () {
+      updateV360Stage($(this).attr("src"));
+    });
+    img4.on("click", function () {
+      updateV360Stage(img4.find("img").attr("src"));
+    });
+    img5.on("click", function () {
+      updateV360Stage(img5.find("img").attr("src"));
+    });
+    btn.on("click", function () {
+      resetV360Stage();
+    });
+    $(".imgWtext").on("click", function () {
+      $("#360view").click();
+    });
+    $(".buttons img, .buttons a").click(function () {
+      $(".V360-stage").css({
+        "background-color": "transparent",
+        "background-image": "none",
+      });
+    });
+    $.get(haArrowB)
+      .done(function () {
+        $(".HA_group").show();
+      })
+      .fail(function () {
+        $(".HA_group").hide();
+      });
+
+    $.get(haArrowF)
+      .done(function () {
+        $(".HA_group").show();
+      })
+      .fail(function () {
+        $(".HA_group").hide();
+      });
+
+    $.get(asetW)
+      .done(function () {
+        $(".Aset_group").show();
+      })
+      .fail(function () {
+        $(".Aset_group").hide();
+      });
+
+    $.get(asetB)
+      .done(function () {
+        $(".Aset_group").show();
+      })
+      .fail(function () {
+        $(".Aset_group").hide();
+      });
+
+    function createImageElement(src, text) {
+      let container = $("<div class='flex'>");
+      let image = $("<img>")
+        .attr("src", src)
+        .on("error", function () {
+          console.log("Error loading image:", src);
+          $(this).remove();
+        });
+      let textNode = $("<p>").text(text);
+      container.append(image, textNode);
+      return container;
+    }
+    function updateV360Stage(imageSrc) {
+      $(".V360-stage").css({
+        "background-image": "url(" + imageSrc + ")",
+        "z-index": "2",
+        "background-color": "#cdcdcd",
+      });
+    }
+    function resetV360Stage() {
+      $(".V360-stage").css({
+        "background-color": "transparent",
+        "background-image": "none",
+      });
+    }
+    let copyUrlBtn = $(
+      `<button class="copyUrlBtn" title="Copy Link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></button>`
+    );
+    $("div#trfv").append(copyUrlBtn);
+    copyUrlBtn.on("click", function () {
+      copyCurrentPageUrl();
+    });
+
+    function copyCurrentPageUrl() {
+      let url = window.location.href;
+      let tempTextarea = $("<textarea>").val(url).appendTo("body").select();
+      document.execCommand("copy");
+      tempTextarea.remove();
+      copyUrlBtn.html("✔"); // Use .html() instead of .text() to insert HTML content
+
+      // Hide check mark and show initial SVG after 5 seconds
+      setTimeout(function () {
+        copyUrlBtn.html(
+          '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>'
+        );
+      }, 5000);
+    }
+
+    let downloadVideoBtn =
+      $(`<button class="downloadVideoBtn" title="Download Video">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></button>`);
+
+    $("div#trfv").append(downloadVideoBtn);
+
+    function getVideoLink() {
+      let url = window.location.href;
+      let value = new URLSearchParams(url.split("?")[1]).get("d");
+      let videoPath = "./imaged/" + value + "/video.mp4";
+      return videoPath;
+    }
+
+    function downloadVideo() {
+      let videoLink = getVideoLink();
+      let downloadLink = $("<a>").attr({
+        href: videoLink,
+        download: "video.mp4",
+      });
+      downloadLink.appendTo("body")[0].click();
+      downloadLink.remove();
+    }
+
+    // Check if video exists
+    $.ajax({
+      url: getVideoLink(),
+      type: "HEAD",
+      error: function () {
+        downloadVideoBtn.hide();
+      },
+      success: function () {
+        downloadVideoBtn.show();
+      },
+    });
+
+    downloadVideoBtn.on("click", function () {
+      downloadVideo();
+    });
+
+    $(".buttons img, .buttons a").click(function () {
+      $(".V360-stage").css({
+        "background-color": "transparent",
+        "background-image": "none",
+      });
+    });
+  });
+</script>
+
+<!-- You can ignore this JS -->
+<script>
+  function startTitleRotation() {
+    // List of titles to rotate
+    const titles = [
+      "Quality Diamonds",
+      "Certified Diamonds",
+      "Best Value",
+      "Welcome to NG360",
+    ];
+
+    let currentIndex = 0;
+
+    // Create a function to rotate the title
+    function rotateTitle() {
+      document.title = titles[currentIndex];
+      currentIndex = (currentIndex + 1) % titles.length;
+    }
+
+    const rotationInterval = setInterval(rotateTitle, 2000);
+
+    // Optionally, you can stop the rotation after a certain duration (e.g., 15000 milliseconds)
+    setTimeout(function () {
+      clearInterval(rotationInterval);
+    }, 15000);
+  }
+
+  // Start the title rotation when the window loads
+  window.onload = startTitleRotation;
+</script>
+
 </html>
