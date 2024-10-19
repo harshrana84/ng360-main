@@ -771,11 +771,12 @@ html {
 /* custom css */
 
 .image_container {
-    padding: 0 15px 50px 15px;
+    padding: 20px 15px 50px 15px;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 .image_container img {
@@ -924,10 +925,10 @@ div#trfv {
 
 .container {
     height: 100%;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
 }
 
 button.downloadVideoBtn svg,
@@ -974,8 +975,60 @@ button.copyUrlBtn svg {
         width: 40px;
         height: 40px;
     }
+    .container-fluid-sm {
+        max-width: 100% !important;
+    }
+    div#stone-detail * {
+        font-size: 36px;
+        padding: 10px;
+    }
+    div#stone-detail{
+        padding: 80px !important;
+    }
 }
 
 button.imgWtext, .image_container > div { 
 	background: #fff;
+}
+ 
+.tags {
+    background: #ddd6fe;
+    width: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 3px 9px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+.level {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* button#copyLinkBtn {
+    background: #fef9c3;
+    padding: 10px;
+    font-weight: 600;
+    padding: 3px 9px;border-radius: 8px;
+} */
+
+.level.mb-3.container.d-flex {
+    display: flex;
+    flex-direction: row;
+}
+
+.buttons {
+    height: 100% !important;
+}
+.column.is-one-third {
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    margin-bottom: 20px;
+    border: 0 !important;
+}
+.box.mt-5 {
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    padding: 10px;
+    margin-bottom: 20px;
 }
