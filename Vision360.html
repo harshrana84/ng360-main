@@ -3,10 +3,10 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <title class="dValue">Quality Diamonds</title>
-  <link rel="icon" href="https://img.icons8.com/deco/48/diamond.png" />
+  <link rel="icon" href="./images/icon/logo-top.png" />
   <link href="css/vision360.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -35,21 +35,21 @@
   <!--Read viewer manual first.Parameter effect are same with query string and function.If you use parameter then functional setting is removed-->
   <!-- https://www.figma.com/file/6LX0MmHcc8PFwThGMVrs5I/NG360?type=whiteboard&node-id=0%3A1&t=VLupO1A57SzroCcV-1 -->
 
-  <!-- <style>
-    .container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      padding: 15px;
-      gap: 20px;
-    }
+  <style>
+    @media screen and (max-width:575px) {
 
-    @media (max-width:1024px) {
-      .container {
-        grid-template-columns: 1fr;
-
+      .frameContainer,
+      .btnPreloadPlay,
+      #Img1,
+      #\33 60frames1,
+      .V360-preload,
+      .V360-stage,
+      .V360-canvas {
+        height: var(--screen-width) !important;
+        width: var(--screen-width) !important;
       }
     }
-  </style> -->
+  </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js"
     integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -58,7 +58,7 @@
 <body>
   <div class="container container-fluid-sm">
     <div class="row">
-      <div class="col-xl-6">
+      <div class="col-xl-6 sticky-on-desk">
         <div class="Vision360"></div>
         <div class="additional_data"></div>
         <div class="buttons_group"></div>
@@ -78,7 +78,7 @@
               <button type="button" class="btn-sm btn btn-secondary copy-button" id="copyLinkBtn">
                 Copy Link
               </button>
-              <button type="button" class="btn-sm btn btn-success copy-button">
+              <button type="button" class="btn-sm btn btn-success copy-button" id="shareOnWhatsapp">
                 <i class="bi bi-whatsapp d-inline-flex align-items-center justify-content-center align-middle"></i>
               </button>
             </div>
@@ -86,12 +86,12 @@
         </div>
         <div class="box content w-100">
           <div class="container my-4">
-            <h4 class="text-center">Stone Details</h4>
+            <h4 class="text-center mb-4">Stone Details</h4>
 
             <div class="row">
               <!-- Left Table -->
-              <div class="col-md-12 col-lg-6">
-                <table class="table table-bordered">
+              <div class="col-md-12 col-lg-6 ">
+                <table class="table table-bordered table-striped">
                   <thead class="thead-dark">
                     <tr>
                       <th scope="col">Attribute</th>
@@ -144,8 +144,8 @@
               </div>
 
               <!-- Right Table -->
-              <div class="col-md-12 col-lg-6">
-                <table class="table table-bordered">
+              <div class="col-md-12 col-lg-6 ">
+                <table class="table table-bordered table-striped">
                   <thead class="thead-dark">
                     <tr>
                       <th scope="col">Attribute</th>
@@ -196,7 +196,7 @@
           </div>
         </div>
         <div class="box mt-5">
-          <div class="level is-mobile">
+          <div class="level is-mobile mb-3">
             <div class="level-left">
               <div class="level-item">
                 <h3 class="is-size-5">GIA</h3>
@@ -205,31 +205,32 @@
             <div class="level-right">
               <button type="button" class="btn-sm btn btn-dark">
                 <i class="bi bi-award d-inline-flex align-items-center justify-content-center align-middle"></i>
-                GIA 5483550511
+                <a href="https://www.gia.edu/report-check?reportno=5483550511" rel="no-referrer"
+                  class="text-decoration-none text-white" target="_blank">GIA 5483550511</a>
               </button>
             </div>
           </div>
-          <object data="https://v360-studio-1002.s3.ap-south-1.amazonaws.com/1250/certificates/426647/65e8430a7fc2d.pdf"
-            type="application/pdf" frameborder="0" width="100%" height="400px">
-            <div class="is-flex is-align-items-center is-justify-content-center">
-              <a href="https://v360-studio-1002.s3.ap-south-1.amazonaws.com/1250/certificates/426647/65e8430a7fc2d.pdf"
-                target="_blank" class="is-flex is-align-items-center is-flex-direction-column">
-                <span class="icon is-large">
-                  <i class="fas fa-file-pdf fa-3x"></i>
-                </span>
-                View Certificate
-              </a>
-            </div>
-          </object>
+
+
+          <pdf-viewer src="https://4cs.gia.edu/files/GIA-how-to-read-a-diamond-grading-report-EN.pdf"
+            class="w-100 mt-4"></pdf-viewer>
+
+
         </div>
-        <object data="https://morth.nic.in/sites/default/files/dd12-13_0.pdf" type="application/pdf" width="100%"
-          height="600px">
-          <p>Your browser does not support PDFs.
-            <a href="https://morth.nic.in/sites/default/files/dd12-13_0.pdf">Download the PDF</a>.
-          </p>
-        </object>
       </div>
     </div>
+  </div>
+
+  <div class="container">
+    <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 my-4 border-top">
+      <div class="col-12 d-flex align-items-center text-center justify-content-center">
+        <span class="text-muted fs-6" style="font-size: 12px !important;">&copy; 2024, Lovingly crafted by
+          <a href="mailto:harshrana0084@gmail.com" target="_blank">
+            Harsh
+          </a>
+          with passion and precision.</span>
+      </div>
+    </footer>
   </div>
 </body>
 
@@ -493,6 +494,78 @@
 
   // Add event listener to the button
   document.getElementById('copyLinkBtn').addEventListener('click', copyCurrentURL);
+
+  // -------------------------------------- PDF JS
+
+  const template = document.createElement('template');
+  template.innerHTML = `
+  <iframe frameborder="0" 
+    width="100%" 
+    height="800">
+  </iframe>
+`
+
+  class PdfViewer extends HTMLElement {
+    constructor() {
+      super()
+      const shadowRoot = this.attachShadow({ mode: 'open' })
+      shadowRoot.appendChild(template.content.cloneNode(true))
+    }
+    get observedAttributes() {
+      return ['src']
+    }
+    connectedCallback() {
+      this.updateIframeSrc()
+    }
+    attributeChangedCallback(name) {
+      if (['src', 'viewerPath'].includes(name)) {
+        this.updateIframeSrc()
+      }
+    }
+    updateIframeSrc() {
+      this.shadowRoot.querySelector('iframe').setAttribute(
+        'src',
+        `https://mozilla.github.io/pdf.js/web/viewer.html?file=${this.getAttribute('src') || ''}`
+      )
+    }
+  }
+  window.customElements.define('pdf-viewer', PdfViewer)
+
+
+  // Function to update the --screen-width CSS variable
+  function updateScreenWidth() {
+    const screenWidth = window.innerWidth;
+    document.documentElement.style.setProperty('--screen-width', `${screenWidth}px`);
+  }
+
+  // Set the variable initially
+  updateScreenWidth();
+
+  // Update the variable on window resize
+  window.addEventListener('resize', updateScreenWidth);
+
+
+  document.getElementById('shareOnWhatsapp').addEventListener('click', function () {
+    // Get the current page URL
+    const currentUrl = window.location.href;
+
+    // WhatsApp sharing link
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(currentUrl)}`;
+
+    // Open WhatsApp link in a new tab
+    window.open(whatsappUrl, '_blank');
+  });
+
+  console.log(
+      "%cDeveloped by Harsh Rana%c\nContact: harshrana0084@gmail.com",
+      "color: #fff; background-color: #194745; padding: 5px 10px; font-size: 16px; border-radius: 4px;margin-top:40px;",
+      "color: #fff; font-size: 14px;margin-top:10px;margin-bottom:40px;"
+    );
+    console.log(
+      "%cSend an email: %chttps://mailto:harshrana0084@gmail.com",
+      "color: #3498db; font-weight: bold;",
+      "color: #000; text-decoration: underline;"
+    );
 </script>
 
 </html>

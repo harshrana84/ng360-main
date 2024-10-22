@@ -771,7 +771,7 @@ html {
 /* custom css */
 
 .image_container {
-    padding: 20px 15px 50px 15px;
+    padding: 20px 0px 50px 0px;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -819,7 +819,7 @@ html {
 }
 
 button {
-    font-size: 55px;
+    font-size: 18px;
     transition: all 200ms ease;
     margin-right: 5px;
     border-radius: 8px;
@@ -854,7 +854,8 @@ div#trfv .btnpos:nth-child(6),
     display: none !important;
 }
 
-.imgWtext, .flex {
+.imgWtext,
+.flex {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -867,8 +868,8 @@ button.imgWtext,
     flex-direction: column;
     align-items: center; */
     margin-right: 0;
-    border: 1px solid #acacff;
-    padding: 5px 0;
+    border: 1px solid #5b483b7c;
+    padding: 5px 2px;
     border-radius: 8px;
 }
 
@@ -888,7 +889,7 @@ button.imgWtext p,
 .Aset_group {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    border: 1px solid #acacff;
+    border: 1px solid #5B483B;
     padding: 5px 0;
     border-radius: 8px;
 }
@@ -910,7 +911,7 @@ button.downloadVideoBtn {
     height: 40px;
     font-size: 22px;
     background: #4e4e50;
-    border-radius: 84px;
+    border-radius: 44px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -936,61 +937,76 @@ button.copyUrlBtn svg {
     width: 22px;
     height: 40px;
 }
+
 @media (min-width:990px) {
-.V360-canvas, .borderound ,.V360-stage{
-    height: 600px !important;
-    width: 600px !important;
-}
+
+    .V360-canvas,
+    .borderound,
+    .V360-stage {
+        height: 600px !important;
+        width: 600px !important;
+    }
 }
 
 @media (max-width:990px) {
     .container {
-        height: 100%; 
+        height: 100%;
     }
-    .buttons { 
+
+    .buttons {
         flex-wrap: wrap;
     }
+
     .button,
     .SideView {
-        height: 84px !important;
-        min-width: 84px !important;
+        height: 27px !important;
+        min-width: 27px !important;
     }
 
     button.copyUrlBtn,
     button.downloadVideoBtn {
-        width: 84px;
-        height: 84px;
+        width: 27px;
+        height: 27px;
     }
 
     .image_container {
-        flex-wrap: wrap;}
+        flex-wrap: wrap;
+    }
+
     .image_container img {
-        max-width: 140px;
-        height: 140px;
-    }
-    button.imgWtext p, .image_container>div p {
-        font-size: 30px;
-    }
-    button.downloadVideoBtn svg, button.copyUrlBtn svg {
-        width: 40px;
+        max-width: 40px;
         height: 40px;
     }
+
+    button.imgWtext p,
+    .image_container>div p {
+        font-size: 12px;
+    }
+
+    button.downloadVideoBtn svg,
+    button.copyUrlBtn svg {
+        width: 18px;
+    }
+
     .container-fluid-sm {
         max-width: 100% !important;
     }
-    div#stone-detail * {
-        font-size: 36px;
+
+    /* div#stone-detail * {
+        font-size: 18px;
         padding: 10px;
-    }
-    div#stone-detail{
-        padding: 80px !important;
-    }
+    } */
+
+    /* div#stone-detail {
+        padding: 20px !important;
+    } */
 }
 
-button.imgWtext, .image_container > div { 
-	background: #fff;
+button.imgWtext,
+.image_container>div {
+    background: #fff;
 }
- 
+
 .tags {
     background: #ddd6fe;
     width: max-content;
@@ -1002,11 +1018,13 @@ button.imgWtext, .image_container > div {
     border-radius: 8px;
     font-weight: 600;
 }
+
 .level {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 /* button#copyLinkBtn {
     background: #fef9c3;
     padding: 10px;
@@ -1021,14 +1039,32 @@ button.imgWtext, .image_container > div {
 
 .buttons {
     height: 100% !important;
+    width: 100% !important;
 }
+
 .column.is-one-third {
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     margin-bottom: 20px;
     border: 0 !important;
 }
+
 .box.mt-5 {
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     padding: 10px;
     margin-bottom: 20px;
+}
+
+@media (min-width:1200px) {
+    .sticky-on-desk{
+        position: sticky;
+        top: 10px;
+        height: max-content;
+    }
+}
+
+@media (min-width:1200px) and (max-width:1400px) {
+    .V360-canvas, .borderound, .V360-stage {
+        height: 400px !important;
+        width: 400px !important;
+    }
 }
