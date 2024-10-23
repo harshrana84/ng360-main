@@ -45,8 +45,9 @@
       .V360-preload,
       .V360-stage,
       .V360-canvas {
-        height: var(--screen-width) !important;
-        width: var(--screen-width) !important;
+        
+        height: calc(var(--screen-width) - calc(calc(var(--bs-gutter-x) * .5)) * 2)!important;
+    width:  calc(var(--screen-width) - calc(calc(var(--bs-gutter-x) * .5)) * 2)!important;
       }
     }
   </style>
