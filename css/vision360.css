@@ -771,7 +771,7 @@ html {
 /* custom css */
 
 .image_container {
-    padding: 20px 0px 50px 0px;
+    padding: 20px 0px 40px 0px;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -937,7 +937,13 @@ button.copyUrlBtn svg {
     width: 22px;
     height: 40px;
 }
-
+.grading-details-box {
+    border: 1px solid;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 8px;
+    border-color: #cacac8;
+}
 
 @media (min-width:990px) {
 
@@ -1001,6 +1007,9 @@ button.copyUrlBtn svg {
     /* div#stone-detail {
         padding: 20px !important;
     } */
+    .grading-details-box td {
+        width: 50%;
+    }
 }
 
 button.imgWtext,
@@ -1055,13 +1064,13 @@ button.imgWtext,
     margin-bottom: 20px;
 }
 
-@media (min-width:1200px) {
+/* @media (min-width:1200px) {
     .sticky-on-desk{
         position: sticky;
         top: 10px;
         height: max-content;
     }
-}
+} */
 
 @media (min-width:1200px) and (max-width:1400px) {
     .V360-canvas, .borderound, .V360-stage {
