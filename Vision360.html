@@ -177,10 +177,10 @@
                 </table>
               </div>
               <div class="col-12">
-                <table class="table table-bordered table-striped">
+            <table class="table table-bordered table-striped measurement_table mb-0">
               <tbody>
                 <tr>
-                  <td class="text-start text-md-center"></td> 
+                  <td class="text-start text-md-center">Measurement</td> 
                   <td class="text-start text-md-center">16.15 x 16.15 x 14.10 mm</td>
                 </tr>
                 </tbody>
@@ -189,25 +189,17 @@
             </div>
           </div>
         </div>
-        <div class="box mt-5">
-          <div class="level is-mobile mb-0">
-            <div class="level-left">
-              <div class="level-item">
-                <h5 class="is-size-5 mb-0">Lab Report</h5>
-              </div>
-            </div>
+          <div class="level is-mobile mb-0 justify-content-center">
             <div class="level-right">
-              <button type="button" class="btn-md btn btn-dark">
+              <button type="button" class="btn-lg btn btn-dark">
                 <a href="https://www.gia.edu/report-check?reportno=5483550511" rel="no-referrer"
                 class="text-decoration-none text-white" target="_blank">Click to View Certificate</a> &nbsp;
                 <i class="bi bi-box-arrow-up-right d-inline-flex align-items-center justify-content-center align-middle"></i>
               </button>
             </div>
           </div>
-
           <!-- <pdf-viewer src="https://www.igi.org/API-IGI/viewpdf-url.php?r=LG652444467"
           class="w-100 mt-4"></pdf-viewer> -->
-        </div>
       </div>
     </div>
   </div>
@@ -346,13 +338,13 @@ document.addEventListener('gesturestart', function (e) {
         "background-image": "none",
       });
     }
-    let copyUrlBtn = $(
-      `<button class="copyUrlBtn" title="Copy Link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></button>`
-    );
-    $("div#trfv").append(copyUrlBtn);
-    copyUrlBtn.on("click", function () {
-      copyCurrentPageUrl();
-    });
+    // let copyUrlBtn = $(
+    //   `<button class="copyUrlBtn" title="Copy Link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></button>`
+    // );
+    // $("div#trfv").append(copyUrlBtn);
+    // copyUrlBtn.on("click", function () {
+    //   copyCurrentPageUrl();
+    // });
 
     function copyCurrentPageUrl() {
       let url = window.location.href;
